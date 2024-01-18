@@ -1,0 +1,28 @@
+document.addEventListener('DOMContentLoaded', () => {
+    
+    <script type="text/discourse-plugin" version="0.8">
+      api.onPageChange(() => {
+        const sidebarFooter = document.querySelector('.sidebar-wrapper .sidebar-footer-wrapper');
+        const existingLink = document.querySelector('.custom-sidebar-link');
+    
+        // Only add the link if it doesn't already exist
+        if (sidebarFooter && !existingLink) {
+          const customLink = document.createElement('div');
+          customLink.innerHTML = '<a href="https://buymeacoffee.com/backroads4me" class="custom-sidebar-link" target="_blank">Buy me a coffee</a>';
+          sidebarFooter.appendChild(customLink);
+        }
+      });
+    </script>
+
+  const customLink = document.querySelector('.custom-sidebar-link');
+  const isDarkMode = document.documentElement.classList.contains('theme-dark');
+
+  customLink.style.color = isDarkMode ? 'var(--custom-link-color-dark)' : 'var(--custom-link-color-light)';
+});
+
+document.addEventListener('theme-change', () => {
+  const customLink = document.querySelector('.custom-sidebar-link');
+  const isDarkMode = document.documentElement.classList.contains('theme-dark');
+
+  customLink.style.color = isDarkMode ? 'var(--custom-link-color-dark)' : 'var(--custom-link-color-light)';
+});
